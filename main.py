@@ -1,6 +1,5 @@
 import pygame
 import sys
-import random
 from pacman import Pacman
 from ghosts import Ghost
 from dot import Dot
