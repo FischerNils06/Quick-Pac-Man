@@ -76,17 +76,28 @@ class  Pacman():
 
 
 
-    def keys(self):
+    def keys(self, controls):
         global keys
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
-            self.direction = "right"
-        elif keys[pygame.K_LEFT]:
-            self.direction = "left"
-        elif keys[pygame.K_UP]:
-            self.direction = "up"     
-        elif keys[pygame.K_DOWN]:
-            self.direction = "down"
+        controlkeys = controls.get_key_mode()
+        if controlkeys == "Arrows":
+            if keys[pygame.K_RIGHT]:
+                self.direction = "right"
+            elif keys[pygame.K_LEFT]:
+                self.direction = "left"
+            elif keys[pygame.K_UP]:
+                self.direction = "up"     
+            elif keys[pygame.K_DOWN]:
+                self.direction = "down"
+        elif controlkeys == "Wasd":
+            if keys[pygame.K_d]:
+                self.direction = "right"
+            elif keys[pygame.K_a]:
+                self.direction = "left"
+            elif keys[pygame.K_w]:
+                self.direction = "up"
+            elif keys[pygame.K_s]:
+                self.direction = "down"
             
        
             

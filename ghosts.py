@@ -83,17 +83,29 @@ class Ghost():
             self.direction = "up"
             self.y -= 10
 
-    def keys(self):
+    def keys(self, controls):
         global keys
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
-            self.update_direction()
-        elif keys[pygame.K_LEFT]:
-            self.update_direction()
-        elif keys[pygame.K_UP]:
-            self.update_direction()  
-        elif keys[pygame.K_DOWN]:
-            self.update_direction()
+        controlkeys = controls.get_key_mode()
+        if controlkeys == "Arrows":
+            if keys[pygame.K_RIGHT]:
+                self.update_direction()
+            elif keys[pygame.K_LEFT]:
+                self.update_direction()
+            elif keys[pygame.K_UP]:
+                self.update_direction()  
+            elif keys[pygame.K_DOWN]:
+                self.update_direction()
+        elif controlkeys == "Wasd":
+            if keys[pygame.K_d]:
+                self.update_direction()
+            elif keys[pygame.K_a]:
+                self.update_direction()
+            elif keys[pygame.K_w]:
+                self.update_direction()  
+            elif keys[pygame.K_s]:
+                self.update_direction()
+
 
     def weak_ghost(self):
         self.image = pygame.image.load(f"./Grafiken/GH_Blue.png")

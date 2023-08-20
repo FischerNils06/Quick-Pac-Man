@@ -6,6 +6,7 @@ from dot import Dot
 from scoreboard import Scoreboard
 from wall import Wall
 from bonusdot import Bonusdot
+from controls import Controls
 
 
 # Initialisierung von Pygame
@@ -51,6 +52,8 @@ wall_list = [wall, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall1
 
 
 scoreboard = Scoreboard()
+controls = Controls("Wasd", 590, 5)
+controls2 = Controls("Arrows", 690, 5)
 
 
 
@@ -75,6 +78,7 @@ def reset_game():
 # Hauptprogrammschleife
 running = True
 ghost_keys_pressed_time = 0
+shift_pressed = 0
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -92,15 +96,21 @@ while running:
     ghost4.update()
     ghost_list = [ghost, ghost2, ghost3, ghost4]
     current_time = pygame.time.get_ticks()
+    if current_time - shift_pressed >= 100:
+        controls.handle_keys()
+        controls2.handle_keys()
+        shift_pressed = current_time
     if current_time - ghost_keys_pressed_time >= 250:
-        ghost.keys()
-        ghost2.keys()
-        ghost3.keys()
-        ghost4.keys()
+        ghost.keys(controls)
+        ghost2.keys(controls)
+        ghost3.keys(controls)
+        ghost4.keys(controls)
         ghost_keys_pressed_time = current_time
-    pacman.keys()
+    pacman.keys(controls)
     pacman.update()
     pacman.update_costume()
+    
+
    
 
     # Clear the screen
@@ -119,6 +129,8 @@ while running:
     for wall_obj in wall_list:
         wall_obj.draw(screen)
     scoreboard.draw(screen)
+    controls.draw(screen)
+    controls2.draw(screen)
     
 
 
