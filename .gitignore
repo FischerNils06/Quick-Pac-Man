@@ -12,3 +12,10 @@ dist/
 # Log and text files
 *.log
 *.txt
+
+# Zip files
+*.zip
+*.gz
+*.7z
+
+zip/
