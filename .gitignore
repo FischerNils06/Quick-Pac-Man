@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Build directories
+build/
+dist/
+*.spec
+
+# Log and text files
+*.log
+*.txt
